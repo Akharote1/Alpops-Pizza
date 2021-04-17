@@ -96,7 +96,7 @@
                             <span style="font-weight: 600; font-size: 10px;"><span class="msymbol">&#8377;</span> {{getItemPrice(citem)}}</span>
                             
                         </div>
-                        <span style="font-weight: 700; font-size: 12px; display: block; padding: 16px 16px 16px 16px; border-top: solid 1px #5b270d0f"><span class="msymbol">&#8377;</span> Net Price: {{getCartPrice()}}</span>
+                        <span style="font-weight: 700; font-size: 12px; display: block; padding: 16px 16px 16px 16px; border-top: solid 1px #5b270d0f">Net Price: <span class="msymbol">&#8377;</span>{{getCartPrice()}}</span>
                         <div v-if="mode==0" id="csui-checkout" v-on:click="mode=!mode">Checkout <img style="" src="assets/images/ic_pizza_primary.png" /></div>
                     </div>
                     
