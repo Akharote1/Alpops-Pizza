@@ -234,10 +234,10 @@ body,html{
     color: var(--color-accent);
 }
 
-
-#customize-inner{
-    width: 100%;
+#customize-outer{
+    min-height: calc(100% - 96px);
 }
+
 
 #customize-content{
     min-height: calc(100% - 48px);

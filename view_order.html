@@ -24,7 +24,7 @@
             </div>
             <div id="navbar" class="container">
                 <a class="navitem" href="index.html">
-                    <img class="navlogo" style="height: 100%;" src="assets/images/logo-accent.png" />
+                    <img class="navlogo" style="height: 100%;" alt="Alpop's Logo" src="assets/images/logo-accent.png" />
                 </a>
                 
                 <a class="navitem navbtn" href="about.html">ABOUT</a>
@@ -44,7 +44,7 @@
                 <div class="container" id="view-content" style="color: var(--color-accent);">
                     <h1>{{title}}</h1>
                     <span id="orderID">Order ID: {{orderID}}</span><br>
-                    <div>
+                    <div style="margin-top: 24px;">
                         <div class="view-item" v-for="(item, index) in order.cart" :key="index">
                             <div v-bind:id="item.cart_id" class="view-three-holder">
                             </div>
