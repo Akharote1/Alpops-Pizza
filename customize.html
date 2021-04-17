@@ -1,0 +1,111 @@
+<html lang="en">
+    <head>
+        <title>Customize your pizza | Alpop's Pizza</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="charset" content="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="assets/js/vue.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script type="module" src="assets/js/pizza-builder.js"></script>
+    </head>
+    <body>
+        <div mnav-active="false" id="navholder">
+            <div id="mnavholder">
+                <div style="width: 100%; background: var(--color-primary);">
+                    <a href="index.html" class="mnavitem">HOME</a>
+                    <a href="customize.html" class="mnavitem">MAKE PIZZA</a>
+                    <a href="contact.html" class="mnavitem">CONTACT</a>
+                    <a href="about.html" class="mnavitem">ABOUT</a>
+                </div>
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+            </div>
+            <div id="navbar" class="container">
+                <a class="navitem" href="index.html">
+                    <img class="navlogo" style="height: 100%;" src="assets/images/logo-accent.png" />
+                </a>
+                
+                <a class="navitem navbtn" href="about.html">ABOUT</a>
+                <a class="navitem navbtn" href="contact.html">CONTACT</a>
+                <a class="navitem navbtn" href="customize.html">MAKE PIZZA</a>
+                <a class="navitem navbtn" href="index.html">HOME</a>
+                <a class="navitem mnavbtn" onclick="toggleNav()">
+                    <img inactive width="36" src="assets/images/ic_mnav.png" />
+                    <img active width="36" src="assets/images/ic_mnav_close.png" />
+                </a>
+            </div>
+        </div>
+        <div id="customize-outer">
+            <div id="customize-inner">
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+                <h2 class="container" style="color: var(--color-accent)">Make your pizza</h2>
+                <div class="container" id="customize-content">
+                    <transition name="fade-left">
+                        <div id="customize-builder" v-if="cartCount>0 && mode==0">
+                            <div id="customize-card">
+                                <div id="customize-card-header">
+                                    <div id="three-holder"></div>
+                                    <div style="padding: 16px">
+                                        <span style="font-size: 10px; font-weight: 600; opacity: 0.8">Item ID: #{{gsi().cart_id}}</span><br>
+                                        <span style="font-size: 16px; font-weight: 600; margin-top: 8px; display: block;">{{gsi().base_name}}</span>
+                                        <span style="font-size: 12px; font-weight: 500; margin-top: 4px; display: block;">Choose your Pizza Size:</span>
+                                        <div id="sizes-holder" selected="small">
+                                            <div class="size-btn" v-bind:mselected="gsi().base_id=='small'" v-on:click="selectPizzaSize('small')">Small</div>
+                                            <div class="size-btn" v-bind:mselected="gsi().base_id=='medium'" mkey="medium" v-on:click="selectPizzaSize('medium')">Medium</div>
+                                            <div class="size-btn" v-bind:mselected="gsi().base_id=='large'" mkey="large" v-on:click="selectPizzaSize('large')">Large</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="customize-toppings-outer">
+                                    <span style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 8px;">Choose toppings: </span>
+                                    <div id="customize-toppings-list">
+                                        <div class="topping-item" v-for="(item, index) in toppings" v-on:click="toggleTopping(item)" v-bind:mselected="isToppingSelected(item)" :key="item.id">{{item.name}} - <span style="font-weight: 500;"><span class="msymbol">&#8377;</span> {{item.price}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+
+                    <transition name="fade-right">
+                        <div id="customize-builder" v-if="cartCount>0 && mode==1">
+                            <div id="customize-card">
+                                <div style="padding: 16px">
+                                    
+                                    <span style="font-size: 16px; font-weight: 600; margin-top: 4px; display: block;"><span class="checkout-back" v-on:click="checkoutBackClick()"><</span> Delivery Details</span>
+                                    <br>
+                                    <input id="input_name" v-on:input="checkInputs" class="minput" placeholder="Your Name" /><br>
+                                    <input id="input_email" v-on:input="checkInputs" class="minput" type="email" placeholder="Email Address" style="margin-top: 4px" /><br>
+                                    
+                                    <span style="display: block; margin-top: 16px; font-size: 12px; font-weight: 500;">Your order will be delivered to the above email. Please make sure it's correct. <br>(Unless you feel like gifting pizzas to some unknown person)</span>
+                                    <a style="margin-top: 16px;" class="bbtn" id="order_btn" menabled="false" v-on:click="placeOrder">Place Order<img style="" src="assets/images/ic_pizza_primary.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                    
+                    <div id="customize-summary" v-bind:cartcount="cartCount">
+                        <span style="font-weight: 700; font-size: 14px; display: inline-block; padding: 16px 16px 16px 16px;">Your Cart</span>
+                        <span id="cart-new" v-on:click="newCartItem()" v-if="mode==0">+</span>
+                        <div v-for="(citem, cindex) in cart" :key="citem.cart_id" v-bind:itemid="citem.cart_id" v-bind:seledit="citem.cart_id==selectedItem ? 'true' : 'false'"  v-on:click="mode==0 ? selectCartItem(citem.cart_id) : 0" class="csui">
+                            <span class="cart-remove" v-if="mode==0" v-on:click="removeCartItem(citem.cart_id,$event)">x</span>
+                            <span style="font-weight: 500; font-size: 14px;">{{citem.base_name}}</span><br>
+                            <span><span style="font-weight: 500; font-size: 10px;" v-for="(titem, tindex) in citem.toppings" :key="tindex">{{titem.name + ((tindex==citem.toppings.length-1) ? "" : ", ")}}</span></span><br>
+                            <span style="font-weight: 600; font-size: 10px;"><span class="msymbol">&#8377;</span> {{getItemPrice(citem)}}</span>
+                            
+                        </div>
+                        <span style="font-weight: 700; font-size: 12px; display: block; padding: 16px 16px 16px 16px; border-top: solid 1px #5b270d0f"><span class="msymbol">&#8377;</span> Net Price: {{getCartPrice()}}</span>
+                        <div v-if="mode==0" id="csui-checkout" v-on:click="mode=!mode">Checkout <img style="" src="assets/images/ic_pizza_primary.png" /></div>
+                    </div>
+                    
+                </div>
+                <div class="zig-accent-down" style="width: 100%; height: 24px"></div>
+            </div>
+        </div>
+        
+        <div id="footer" class="container">
+            Made by <a style="color: #FFF" href="https://github.com/Akharote1">Aditya Kharote</a> for SPIT Web It Up 2021 <span class="msymbol">&#127829;</span>
+        </div>
+    </body>
+</html>

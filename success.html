@@ -1,0 +1,71 @@
+<html lang="en">
+    <head>
+        <title>Success | Alpop's Pizza</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="charset" content="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="assets/js/vue.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/success.js"></script>
+    </head>
+    <body>
+        <div mnav-active="false" id="navholder">
+            <div id="mnavholder">
+                <div style="width: 100%; background: var(--color-primary);">
+                    <a href="index.html" class="mnavitem">HOME</a>
+                    <a href="customize.html" class="mnavitem">MAKE PIZZA</a>
+                    <a href="contact.html" class="mnavitem">CONTACT</a>
+                    <a href="about.html" class="mnavitem">ABOUT</a>
+                </div>
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+            </div>
+            <div id="navbar" class="container">
+                <a class="navitem" href="index.html">
+                    <img class="navlogo" style="height: 100%;" src="assets/images/logo-accent.png" />
+                </a>
+                
+                <a class="navitem navbtn" href="about.html">ABOUT</a>
+                <a class="navitem navbtn" href="contact.html">CONTACT</a>
+                <a class="navitem navbtn" href="customize.html">MAKE PIZZA</a>
+                <a class="navitem navbtn" href="index.html">HOME</a>
+                <a class="navitem mnavbtn" onclick="toggleNav()">
+                    <img inactive width="36" src="assets/images/ic_mnav.png" />
+                    <img active width="36" src="assets/images/ic_mnav_close.png" />
+                </a>
+            </div>
+        </div>
+
+        
+        <div id="success-outer">
+            <div id="success-inner">
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+                <div class="container" id="success-content" style="color: var(--color-accent);">
+                    <h1>{{title}}</h1>
+                    <span id="orderID">Order ID: {{orderID}}</span><br>
+                    <div>
+                        <span v-if="status==1">{{order.name}}, <br></span>
+                        {{message}}
+                        <span v-if="status==1"><br>Please check your spam box if you are unable to find the email.<br></span>
+                        <br>
+                        <div v-if="status==1">
+                            Alternatively, you can just use the link below to enjoy your pizzas <span class="msymbol">&#127829;</span>
+                            <br><br><br><br>
+                            <a class="btn-primary" v-bind:href="view_link">
+                                VIEW YOUR ORDER
+                                <img src="assets/images/ic_pizza_accent.png" normal />
+                                <img src="assets/images/ic_pizza_primary.png" hover />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="zig-accent-down" style="width: 100%; height: 24px"></div>
+            </div>
+        </div>
+        <div id="footer" class="container">
+            Made by <a style="color: #FFF" href="https://github.com/Akharote1">Aditya Kharote</a> for SPIT Web It Up 2021 <span class="msymbol">&#127829;</span>
+        </div>
+    </body>
+</html>

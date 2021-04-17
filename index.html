@@ -1,0 +1,89 @@
+<html lang="en">
+    <head>
+        <title>Alpop's Pizza | The World's Best Virtual Pizzas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="charset" content="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="assets/js/main.js"></script>
+    </head>
+    <body>
+        <div mnav-active="false" id="navholder">
+            <div id="mnavholder">
+                <div style="width: 100%; background: var(--color-primary);">
+                    <a href="index.html" class="mnavitem">HOME</a>
+                    <a href="customize.html" class="mnavitem">MAKE PIZZA</a>
+                    <a href="contact.html" class="mnavitem">CONTACT</a>
+                    <a href="about.html" class="mnavitem">ABOUT</a>
+                </div>
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+            </div>
+            <div id="navbar" class="container">
+                <a class="navitem" href="index.html">
+                    <img class="navlogo" style="height: 100%;" src="assets/images/logo-accent.png" />
+                </a>
+                
+                <a class="navitem navbtn" href="about.html">ABOUT</a>
+                <a class="navitem navbtn" href="contact.html">CONTACT</a>
+                <a class="navitem navbtn" href="customize.html">MAKE PIZZA</a>
+                <a class="navitem navbtn" href="index.html">HOME</a>
+                <a class="navitem mnavbtn" onclick="toggleNav()">
+                    <img inactive width="36" src="assets/images/ic_mnav.png" />
+                    <img active width="36" src="assets/images/ic_mnav_close.png" />
+                </a>
+            </div>
+        </div>
+        
+        <div id="onboarding-outer">
+            <div id="onboarding-inner">
+                <div class="zig-primary-up" style="width: 100%; height: 24px"></div>
+                <div class="container" id="onboarding-content" style="">
+                    <span style="font-size: 42px; font-weight: 800">Night Time<br>Cravings?</span><br><br>
+                    <span style="font-size: 18px; font-weight: 500">Your favourite pizzas are now available online!</span><br><br>
+                    <a class="btn-primary" href="customize.html">
+                        ORDER NOW
+                        <img src="assets/images/ic_pizza_accent.png" normal />
+                        <img src="assets/images/ic_pizza_primary.png" hover />
+                    </a>
+                </div>
+                <div class="zig-white-down" style="width: 100%; height: 24px"></div>
+            </div>
+        </div>
+        <div id="section-working" class="container">
+            <h1 style="color: var(--color-accent)">Online Pizza? How?</h1>
+            <div id="working-holder">
+                <div id="working-content">
+                    Everyone loves Pizza, right? <br>
+                    So why not try customizing and making your own? Right here in your browser! <br><br>
+                    <div id="how-to-list">
+                        <span><img src="assets/images/ic_pizza_accent.png" />Choose your base pizza</span>
+                        <span><img src="assets/images/ic_pizza_accent.png" />Customize your pizza</span>
+                        <span><img src="assets/images/ic_pizza_accent.png" />Choose the toppings and watch your pizza come together before you</span>
+                        <span><img src="assets/images/ic_pizza_accent.png" />Confirm and place your order</span>
+                        <span><img src="assets/images/ic_pizza_accent.png" />Enjoy your Pizza!</span>
+        
+                    </div>
+                </div>
+                <div id="working-splash">
+                    <center>
+                        <div id="three-holder"></div>
+                        <script type="module">
+                            import PizzaRenderer from "./assets/js/pizza-renderer.js"
+
+                            let pr = new PizzaRenderer(document.getElementById("three-holder"))
+                            pr.toppingList = ["pepperoni","sausages","corn","paneer","capsicum"]
+                            pr.changePizzaBase("large")
+                            
+                        </script>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="zig-accent-down" style="width: 100%; height: 24px"></div>
+        <div id="footer" class="container">
+            Made by <a style="color: #FFF" href="https://github.com/Akharote1">Aditya Kharote</a> for SPIT Web It Up 2021 <span class="msymbol">&#127829;</span>
+        </div>
+    </body>
+</html>
